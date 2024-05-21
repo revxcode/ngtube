@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ToggleMode from "@/components/Elements/Darkmode/ToggleMode.vue";
 import {
 	RiSearchLine,
@@ -11,17 +10,9 @@ import {
 	RiLineChartLine,
 	RiHistoryLine,
 } from "@remixicon/vue";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import SidebarLink from "@/components/Elements/Sidebar/SidebarLink.vue";
 
-const imageUrl = ref("https://vuejs.org/logo.svg");
+import SidebarLink from "@/components/Elements/Sidebar/SidebarLink.vue";
+import Profile from "@/components/Elements/Header/Profile/Profile.vue";
 
 const pathname = ref(window.location.pathname);
 </script>
@@ -49,7 +40,7 @@ const pathname = ref(window.location.pathname);
 			<!-- sidebar content -->
 			<div class="flex justify-start w-full px-4">
 				<!-- sidebar list -->
-				<ul class="flex w-full flex-col font-monserrat my-2 gap-2">
+				<ul class="flex w-full flex-col font-monserrat my-4 gap-2">
 					<li>
 						<SidebarLink href="/" title="Home">
 							<RiHome6Line class="w-6 h-6" />
@@ -79,14 +70,7 @@ const pathname = ref(window.location.pathname);
 			<!-- header element  -->
 			<header class="w-full h-20 bg-custom-snow dark:bg-custom-night">
 				<!-- navigation bar  -->
-				<nav class="flex h-full items-center justify-between px-8">
-					<!-- navigate list  -->
-					<ul class="flex flex-row gap-10 text-sm">
-						<li><a href="" title="">All</a></li>
-						<li><a href="" title="">Popular</a></li>
-						<li><a href="" title="">Movies</a></li>
-						<li><a href="" title="">Series</a></li>
-					</ul>
+				<nav class="flex h-full items-center justify-end px-8">
 					<!-- auth & profile  -->
 					<div class="flex h-full items-center gap-2">
 						<!-- search bar  -->
@@ -108,42 +92,50 @@ const pathname = ref(window.location.pathname);
 						<!-- darkmode toggle  -->
 						<ToggleMode />
 						<!-- profile -->
-						<div class="w-12 h-12 rounded-full">
-							<DropdownMenu>
-								<DropdownMenuTrigger>
-									<!-- avatar -->
-									<Avatar>
-										<AvatarImage
-											:src="imageUrl"
-											alt="@radix-vue"
-										/>
-										<AvatarFallback> CN </AvatarFallback>
-									</Avatar>
-								</DropdownMenuTrigger>
-								<DropdownMenuContent class="max-w-40 mx-2">
-									<DropdownMenuLabel
-										class="text-nowrap truncate"
-									>
-										My Account
-									</DropdownMenuLabel>
-									<DropdownMenuSeparator />
-									<DropdownMenuItem>
-										Profile
-									</DropdownMenuItem>
-									<DropdownMenuItem>
-										Billing
-									</DropdownMenuItem>
-									<DropdownMenuItem> Team </DropdownMenuItem>
-									<DropdownMenuItem>
-										Subscription
-									</DropdownMenuItem>
-								</DropdownMenuContent>
-							</DropdownMenu>
-						</div>
+						<Profile />
 					</div>
 				</nav>
 			</header>
 			<main class="w-full overflow-y-auto hidden-scrollbar">
+				<!-- navigate list  -->
+				<div class="w-full h-14 pt-2">
+					<ul
+						class="flex h-full items-center flex-row gap-2 text-sm ml-10 font-poppins"
+					>
+						<li>
+							<a
+								href=""
+								title=""
+								class="bg-zinc-100 dark:bg-zinc-900 py-1 px-6 rounded-3xl"
+								>All</a
+							>
+						</li>
+						<li>
+							<a
+								href=""
+								title=""
+								class="bg-zinc-100 dark:bg-zinc-900 py-1 px-6 rounded-3xl"
+								>Popular</a
+							>
+						</li>
+						<li>
+							<a
+								href=""
+								title=""
+								class="bg-zinc-100 dark:bg-zinc-900 py-1 px-6 rounded-3xl"
+								>Movies</a
+							>
+						</li>
+						<li>
+							<a
+								href=""
+								title=""
+								class="bg-zinc-100 dark:bg-zinc-900 py-1 px-6 rounded-3xl"
+								>Series</a
+							>
+						</li>
+					</ul>
+				</div>
 				<slot />
 			</main>
 		</div>

@@ -19,10 +19,12 @@ const pathname = ref(window.location.pathname);
 
 <template>
 	<!-- parent container -->
-	<div class="flex w-full h-screen flex-row bg-zinc-100 dark:bg-zinc-950">
+	<div
+		class="flex w-full h-screen flex-row bg-custom-snow dark:bg-zinc-950 overflow-hidden"
+	>
 		<!-- sidebar  -->
 		<aside
-			class="flex flex-col w-1/5 h-full bg-custom-snow dark:bg-custom-night"
+			class="flex flex-col w-1/5 h-full bg-custom-snow dark:bg-zinc-950"
 		>
 			<!-- sidebar header  -->
 			<div class="flex justify-center items-center h-20">
@@ -68,27 +70,27 @@ const pathname = ref(window.location.pathname);
 		<!-- content container  -->
 		<div class="w-full max-w-full h-full">
 			<!-- header element  -->
-			<header class="w-full h-20 bg-custom-snow dark:bg-custom-night">
+			<header class="w-full h-20 bg-custom-snow dark:bg-zinc-950">
 				<!-- navigation bar  -->
 				<nav class="flex h-full items-center justify-end px-8">
+					<!-- search bar  -->
+					<div class="relative w-full max-w-sm items-center mx-4">
+						<Input
+							id="search"
+							type="text"
+							placeholder="Search..."
+							class="h-8 pl-10 rounded-3xl outline-custom-tifany-blue dark:outline-custom-persian-green"
+						/>
+						<span
+							class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
+						>
+							<RiSearchLine
+								class="size-6 text-muted-foreground"
+							/>
+						</span>
+					</div>
 					<!-- auth & profile  -->
 					<div class="flex h-full items-center gap-2">
-						<!-- search bar  -->
-						<div class="relative w-full max-w-sm items-center">
-							<Input
-								id="search"
-								type="text"
-								placeholder="Search..."
-								class="pl-10 rounded-full outline-custom-tifany-blue dark:outline-custom-persian-green"
-							/>
-							<span
-								class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
-							>
-								<RiSearchLine
-									class="size-6 text-muted-foreground"
-								/>
-							</span>
-						</div>
 						<!-- darkmode toggle  -->
 						<ToggleMode />
 						<!-- profile -->
@@ -96,11 +98,11 @@ const pathname = ref(window.location.pathname);
 					</div>
 				</nav>
 			</header>
-			<main class="w-full overflow-y-auto hidden-scrollbar">
+			<main class="w-full h-full mx-10">
 				<!-- navigate list  -->
 				<div class="w-full h-14 pt-2">
 					<ul
-						class="flex h-full items-center flex-row gap-2 text-sm ml-10 font-poppins"
+						class="flex h-full items-center flex-row gap-2 text-sm font-poppins z-10"
 					>
 						<li>
 							<a
@@ -136,7 +138,10 @@ const pathname = ref(window.location.pathname);
 						</li>
 					</ul>
 				</div>
-				<slot />
+				<!-- container video  -->
+				<div class="w-full h-full overflow-y-auto">
+					<slot />
+				</div>
 			</main>
 		</div>
 	</div>

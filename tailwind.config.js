@@ -29,17 +29,6 @@ module.exports = {
         "bebas-neue": ["Bebas Neue", "sans-serif"],
         "russo-one": ["Russo One", "sans-serif"],
       },
-      scrollbar: {
-        // Definisi properti untuk custom class .hidden-scrollbar
-        "hidden-scrollbar": {
-          "overflow-y": "auto",
-          "scrollbar-width": "none",
-          "-ms-overflow-style": "none",
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-        },
-      },
       colors: {
         custom: {
           night: "#131515",

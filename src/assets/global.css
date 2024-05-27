@@ -78,3 +78,33 @@
     @apply bg-background text-foreground;
   }
 }
+
+/*design youtubr scrollbar*/
+::-webkit-scrollbar {
+  width: 8px; /* Lebar scrollbar */
+  height: 8px; /* Tinggi scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent; /* Warna latar belakang scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #339989; /* Warna scrollbar */
+  border-radius: 4px; /* Radius sudut scrollbar */
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent; /* Warna latar belakang scrollbar */
+}
+
+.hidden-scrollbar {
+  overflow-y: auto; /* Mengizinkan scrolling vertikal jika melebihi batas */
+  scrollbar-width: none; /* Menyembunyikan scrollbar untuk Firefox */
+  -ms-overflow-style: none; /* Menyembunyikan scrollbar untuk Internet Explorer dan Microsoft Edge lama */
+}
+
+/* Untuk Chrome, Safari, dan Opera */
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none; /* Menyembunyikan scrollbar */
+}

@@ -1,18 +1,14 @@
 <script setup>
 import { ref } from "vue";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import ToggleMode from "@/components/Elements/Darkmode/ToggleMode.vue";
 import {
-	RiSearchLine,
 	RiHome6Line,
 	RiDownloadLine,
 	RiLineChartLine,
 	RiHistoryLine,
 } from "@remixicon/vue";
-
 import SidebarLink from "@/components/Elements/Sidebar/SidebarLink.vue";
-import Profile from "@/components/Elements/Header/Profile/Profile.vue";
+import Header from "@/components/Elements/Header/index.vue";
 
 const pathname = ref(window.location.pathname);
 </script>
@@ -70,34 +66,7 @@ const pathname = ref(window.location.pathname);
 		<!-- content container  -->
 		<div class="w-full max-w-full h-full">
 			<!-- header element  -->
-			<header class="w-full h-20 bg-custom-snow dark:bg-zinc-950">
-				<!-- navigation bar  -->
-				<nav class="flex h-full items-center justify-end px-8">
-					<!-- search bar  -->
-					<div class="relative w-full max-w-sm items-center mx-4">
-						<Input
-							id="search"
-							type="text"
-							placeholder="Search..."
-							class="h-8 pl-10 rounded-3xl outline-custom-tifany-blue dark:outline-custom-persian-green"
-						/>
-						<span
-							class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
-						>
-							<RiSearchLine
-								class="size-6 text-muted-foreground"
-							/>
-						</span>
-					</div>
-					<!-- auth & profile  -->
-					<div class="flex h-full items-center gap-2">
-						<!-- darkmode toggle  -->
-						<ToggleMode />
-						<!-- profile -->
-						<Profile />
-					</div>
-				</nav>
-			</header>
+			<Header />
 			<main class="w-full h-full mx-10">
 				<!-- navigate list  -->
 				<div class="w-full h-14 pt-2">

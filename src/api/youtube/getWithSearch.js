@@ -5,8 +5,8 @@ let globalData = [];
 let pageTokenLoop = 0;
 let currentPageToken = null;
 
-async function getRecommendedVideos(props) {
-	const { chart, part, maxResults, pageToken } = props;
+async function getVideosWithSearch(props) {
+	const { keyword, part, maxResults, pageToken } = props;
 	const pageTokenParams = pageToken ? `&pageToken=${pageToken}` : "";
 
 	if (pageToken !== null) {
@@ -14,10 +14,12 @@ async function getRecommendedVideos(props) {
 		console.log("Page Token Loop: ", pageTokenLoop);
 	}
 
+	//start axios
 	try {
 		const response = await axios.get(
-			`https://www.googleapis.com/youtube/v3/videos?chart=${chart}&part=${part}&type=video&regionCode=ID&maxResults=${maxResults + pageTokenParams}&key=${apikey}`,
+			`https://www.googleapis.com/youtube/v3/search?q=${keyword}&maxResults=${maxResults}&type=video&part=${part}&key=${apikey + pageTokenParams}`,
 		);
+
 		const { items, nextPageToken } = response.data;
 
 		const channelIds = items.map((item) => item.snippet.channelId);
@@ -34,7 +36,7 @@ async function getRecommendedVideos(props) {
 				// ...item,
 				// ...getCustomData[index],
 				// index: index,
-				videoId: item.id,
+				videoId: item.id.videoId,
 				videoTitle: item.snippet.title,
 				videoThumbnail: item.snippet.thumbnails.high.url,
 				videoDescription: item.snippet.description,
@@ -51,7 +53,7 @@ async function getRecommendedVideos(props) {
 			nextPageToken,
 		};
 	} catch (error) {
-		console.error("Error fetching recommended videos:", error);
+		console.error("Error fetching search videos:", error);
 		throw error;
 	}
 }
@@ -68,13 +70,18 @@ async function getChannelData(channelIds) {
 	}
 }
 
-async function getFirstYoutubeData(props) {
+async function getWithSearch(props) {
+	const { keyword, maxResults, pageToken } = props;
+
 	if (pageTokenLoop < pageTokenLimit) {
-		const data = await getRecommendedVideos(props);
+		const data = await getVideosWithSearch(props);
+		console.log(currentPageToken, data.nextPageToken);
 
 		if (currentPageToken != data.nextPageToken) {
 			currentPageToken = data.nextPageToken;
-			globalData = globalData.concat(...data.items);
+			globalData.push(...data.items);
+		} else {
+			globalData = [...data.items];
 		}
 		return {
 			items: globalData,
@@ -88,4 +95,4 @@ async function getFirstYoutubeData(props) {
 	}
 }
 
-export default getFirstYoutubeData;
+export default getWithSearch;

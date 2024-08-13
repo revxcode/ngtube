@@ -39,7 +39,7 @@
 									class="font-semibold text-[10px] font-poppins"
 									>{{
 										formatNumber(
-											video.videoStatistics.viewCount,
+											video.videoStatistics?.viewCount,
 										)
 									}}</span
 								>
@@ -49,7 +49,7 @@
 									class="font-semibold text-[10px] font-poppins"
 									>{{
 										formatNumber(
-											video.videoStatistics.likeCount,
+											video.videoStatistics?.likeCount,
 										)
 									}}</span
 								>
@@ -59,7 +59,7 @@
 									class="font-semibold text-[10px] font-poppins"
 									>{{
 										formatNumber(
-											video.videoStatistics.commentCount,
+											video.videoStatistics?.commentCount,
 										)
 									}}</span
 								>
